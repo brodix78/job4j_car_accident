@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@Controller
+//@Controller
 public class IndexControl {
-    @GetMapping("/")
+  /*  @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("table", List.of("One", "Two", "Three"));
         return "index";
-    }
+    }*/
 }
