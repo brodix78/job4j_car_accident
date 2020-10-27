@@ -22,8 +22,14 @@ public class AccidentMem {
         this.accidents = accidents;
     }
 
-    public void addAccidents(int id, Accident accident) {
+    public void addAccident(Accident accident) {
+        int id = accidents.keySet().stream().max(Integer::compare).get() + 1;
+        accident.setId(id);
         accidents.put(id, accident);
+    }
+
+    public void updateAccident(Accident accident) {
+        accidents.put(accident.getId(), accident);
     }
 
     public Accident getAccidentById(int id) {
