@@ -4,9 +4,12 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
+
+    private AtomicInteger id = new AtomicInteger(3);
 
     private HashMap<Integer, Accident> accidents = new HashMap<>(Map.of(
             1, new Accident(1, "First", "Small accident", "village"),
@@ -23,9 +26,8 @@ public class AccidentMem {
     }
 
     public void addAccident(Accident accident) {
-        int id = accidents.keySet().stream().max(Integer::compare).get() + 1;
-        accident.setId(id);
-        accidents.put(id, accident);
+        accident.setId(id.incrementAndGet());
+        accidents.put(accident.getId(), accident);
     }
 
     public void updateAccident(Accident accident) {
