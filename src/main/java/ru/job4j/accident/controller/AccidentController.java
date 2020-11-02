@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentRepository;
 
 @Controller
 public class AccidentController {
 
-    private final AccidentHibernate accidents;
+    private final AccidentRepository accidents;
 
-    public AccidentController(AccidentHibernate accidents) {
+    public AccidentController(AccidentRepository accidents) {
         this.accidents = accidents;
     }
 
@@ -25,20 +25,24 @@ public class AccidentController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        accidents.addAccident(accident);
+        accidents.save(accident);
         return "redirect:/";
     }
 
     @GetMapping("/change")
     public String change(@RequestParam String id, Model model) {
         int i = Integer.parseInt(id);
-        model.addAttribute("accident", accidents.getAccidentById(i));
-        return "accident/change";
+        var accident = accidents.findById(i);
+        if (accident.isPresent()) {
+            model.addAttribute("accident", accident.get());
+            return "accident/change";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Accident accident) {
-        accidents.updateAccident(accident);
+        accidents.save(accident);
         return "redirect:/";
     }
 }

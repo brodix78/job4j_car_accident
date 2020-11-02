@@ -32,7 +32,7 @@ public class AccidentHibernate {
         }
         return null;
     }
-    
+
     public List<Accident> getAll() {
         return tx(session -> session.createQuery("FROM Accident", Accident.class).list());
     }
