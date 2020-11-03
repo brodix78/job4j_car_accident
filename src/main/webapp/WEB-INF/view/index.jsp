@@ -33,5 +33,9 @@
 <form action="/accident/create">
     <input type="submit" value="Добавить инцидент" />
 </form>
+<p></p>
+<form action="<c:url value='/logout'/>" method='GET'>
+    <input type="submit" value="Выход" />
+</form>
 </body>
 </html>

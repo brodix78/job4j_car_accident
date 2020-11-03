@@ -13,7 +13,7 @@ import javax.servlet.ServletRegistration;
 public class WebInit implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(WebConfig.class, DataConfig.class);
+        context.register(WebConfig.class, DataConfig.class, SecurityConfig.class);
         context.refresh();
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
