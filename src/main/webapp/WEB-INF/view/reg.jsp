@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Accident login</title>
+    <title>Accident registration</title>
     <!-- Required meta tags -->
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,14 +12,14 @@
 <c:choose>
     <c:when test="${not empty errorMessage}">
         <div style="color:#ff0000; font-weight: bold; margin: 30px 0px;">
-            ${errorMessage}
+                ${errorMessage}
         </div>
     </c:when>
     <c:otherwise>
-        <h4>Login page</h4>
+        <h4>Registration page</h4>
     </c:otherwise>
 </c:choose>
-<form name='login' action="<c:url value='/login'/>" method='POST'>
+<form name='login' action="<c:url value='/reg'/>" method='POST'>
     <table>
         <tr>
             <td>UserName:</td>
@@ -33,9 +33,6 @@
             <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
         </tr>
     </table>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
-<br />
-<a href="<c:url value='/reg'/>">Регистрация</a>
 </body>
 </html>
